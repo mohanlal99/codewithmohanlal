@@ -95,6 +95,14 @@ export const siteConfig = {
       image: "project/onlinecourseportal.jpg",
     },
     {
+      label: "Top Global News",
+      des: "Developed a responsive news website using Next.js, featuring real-time news articles sourced from various global APIs. Implemented JWT for secure user authentication and personalized content delivery.",
+      live: "https://topglobalnews.in",
+      github: "https://github.com/mohanlal99/Top-Global-News",
+      time: "October 2024",
+      image: "project/topglobalnews.jpg",
+    },
+    {
       label: "Personal Portfolio",
       des: "Created a dynamic and responsive personal portfolio website showcasing my projects, skills, and experience.",
       live: "https://codewithmohanlal.vercel.app/",
@@ -108,14 +116,6 @@ export const siteConfig = {
       github: "https://github.com/mohanlal99/password-manager",
       time: "May 2024",
       image: "project/passwordmanager.jpg",
-    },
-    {
-      label: "To-Do List App",
-      des: "Developed a feature-rich To-Do List application to help users organize their tasks efficiently with real-time updates.",
-      live: "https://todo-list-project-app.vercel.app/",
-      github: "https://github.com/mohanlal99/todo-list",
-      time: "April 2024",
-      image: "project/todolist.jpg",
     },
     {
       label: "YouTube Video Downloader",
@@ -134,6 +134,7 @@ export const siteConfig = {
   ],
   MyBlog: [
     {
+      id: "0",
       image: "/project/my.png",
       title: "I Fight For The Users",
       content: `
@@ -141,6 +142,7 @@ export const siteConfig = {
       `,
     },
     {
+      id: "1",
       image: "/project/my.png",
       title: "The Art of Simplifying Complexity",
       content: `
@@ -148,6 +150,7 @@ export const siteConfig = {
       `,
     },
     {
+      id: "2",
       image: "/project/my.png",
       title: "Embracing Failure: Lessons from Bugs",
       content: `
@@ -155,6 +158,7 @@ export const siteConfig = {
       `,
     },
     {
+      id: "3",
       image: "/project/my.png",
       title: "Beyond Code: Building a Developer Community",
       content: `
