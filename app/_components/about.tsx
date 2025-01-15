@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useRef } from "react";
 import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
-import { motion, useInView, useScroll, useTransform, useViewportScroll } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const About = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const { scrollYProgress } = useScroll()
-const scale = useTransform(scrollYProgress, [0, 1], [0.6, 3]);
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [0.6, 3]);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -25,11 +25,6 @@ const scale = useTransform(scrollYProgress, [0, 1], [0.6, 3]);
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   };
 
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 1.2 } },
-  };
-
   const cardVariants = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
@@ -38,7 +33,7 @@ const scale = useTransform(scrollYProgress, [0, 1], [0.6, 3]);
   return (
     <section
       ref={sectionRef}
-      className="shadow-xl flex flex-col md:flex-row md:min-h-[100vh] min-h-[80vh] items-center justify-center dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)] overflow-hidden"
+      className="shadow-xl flex flex-col md:flex-row min-h-screen items-center justify-center dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)] overflow-hidden"
       id="about"
     >
       {/* <motion.div
@@ -56,15 +51,14 @@ const scale = useTransform(scrollYProgress, [0, 1], [0.6, 3]);
       </motion.div> */}
 
       <motion.div
-
+        animate={isInView ? "visible" : "hidden"}
         className="relative z-10 text-center md:text-left md:w-10/12 p-8"
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
       >
-        <motion.div variants={itemVariants}>
+        <motion.div variants={itemVariants} className="text-center">
           <Link
-            className="text-4xl font-bold mb-6 inline-block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+            className="text-4xl text-center font-bold mb-6 inline-block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
             href="#about"
           >
             About Me
@@ -76,8 +70,8 @@ const scale = useTransform(scrollYProgress, [0, 1], [0.6, 3]);
           variants={containerVariants}
         >
           <motion.div
-            style={{scale}}
             className="bg-background/50 backdrop-blur-md border border-primary/20 rounded-xl p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+            style={{ scale }}
             variants={cardVariants}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -95,8 +89,8 @@ const scale = useTransform(scrollYProgress, [0, 1], [0.6, 3]);
           </motion.div>
 
           <motion.div
-          style={{scale}}
             className="bg-background/50 backdrop-blur-md border border-primary/20 rounded-xl p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+            style={{ scale }}
             variants={cardVariants}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -109,7 +103,7 @@ const scale = useTransform(scrollYProgress, [0, 1], [0.6, 3]);
             <h2 className="text-xl font-bold mb-2">Education</h2>
             <div className="flex flex-col text-center text-default-500">
               <p className="text-lg font-semibold">2020-2023</p>
-              <p className="text-sm">B.Sc. Bachelor's Degree</p>
+              <p className="text-sm">B.Sc. Bachelor&#39;s Degree</p>
             </div>
           </motion.div>
         </motion.div>

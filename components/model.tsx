@@ -1,13 +1,12 @@
-import React from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  useDisclosure,
-} from "@nextui-org/modal";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/modal";
 
 export default function ResumeModalImage() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

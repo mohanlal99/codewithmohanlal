@@ -1,16 +1,17 @@
-import { HeartFilledIcon } from "@/components/icons";
-import { siteConfig } from "@/config/site";
 import { Button } from "@nextui-org/react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
+
+import { siteConfig } from "@/config/site";
+import { HeartFilledIcon } from "@/components/icons";
 
 const BlogSection = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   return (
     <section
-      className="flex flex-col p-6 md:min-h-[80vh] min-h-[90vh] items-center justify-center dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]"
+      className="flex flex-col p-6 min-h-screen items-center justify-center dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]"
       id="blog"
     >
       <div className="text-center">
@@ -21,11 +22,11 @@ const BlogSection = () => {
           {siteConfig.MyBlog.map((blog, index) => (
             <motion.div
               key={index}
-              layoutId={blog.id}
               className="cursor-pointer p-6 rounded-lg border dark:bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)] bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)] shadow-md hover:shadow-xl transition-shadow duration-300"
-              onClick={() => setSelectedId(blog.id)}
+              layoutId={blog.id}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => setSelectedId(blog.id)}
             >
               <h3 className="text-2xl font-bold flex gap-2 text-primary">
                 <HeartFilledIcon className="text-red-500" />
@@ -46,11 +47,11 @@ const BlogSection = () => {
       <AnimatePresence>
         {selectedId && (
           <motion.div
-            layoutId={selectedId}
-            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
-            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
             exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            layoutId={selectedId}
             onClick={() => setSelectedId(null)}
           >
             <motion.div
@@ -68,7 +69,10 @@ const BlogSection = () => {
                       <p className="text-lg text-default-500 mb-4">
                         {blog.content}
                       </p>
-                      <Button color="danger" onClick={() => setSelectedId(null)}>
+                      <Button
+                        color="danger"
+                        onClick={() => setSelectedId(null)}
+                      >
                         Close
                       </Button>
                     </div>
