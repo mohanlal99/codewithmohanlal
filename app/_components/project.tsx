@@ -1,161 +1,94 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
-import { Button } from "@nextui-org/button";
-import { Link } from "@nextui-org/link";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-
-import { siteConfig } from "@/config/site";
+import { useRouter } from "next/navigation";
+import SectionTitle from "./SectionTitle";
 import { GithubIcon } from "@/components/icons";
+import { siteConfig } from "@/config/site";
+
+// Sample helper function to calculate days ago
 
 const Projects = () => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-      },
-    },
-  };
-
-  const titleVariants = {
-    hidden: { opacity: 0, y: -50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-      },
-    },
-  };
+  const router = useRouter();
+  const projectItems = siteConfig.projectItem.slice(0); // Use full list or slice as needed
 
   return (
-    <motion.section
-      ref={ref}
-      animate={controls}
-      className="p-6 sm:p-2 min-h-screen flex flex-col items-center justify-center dark:bg-gradient-to-br dark:from-gray-900 dark:via-purple-900 dark:to-violet-900 bg-gradient-to-br from-gray-100 via-purple-100 to-violet-200"
-      id="project"
-      initial="hidden"
-      variants={containerVariants}
-    >
-      <motion.div
-        className="text-center sm:p-8 w-full max-w-7xl"
-        variants={containerVariants}
-      >
-        <motion.h2
-          className="text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-          variants={titleVariants}
-        >
-          Projects
-        </motion.h2>
-        <motion.div
-          className="grid grid-cols-1 gap-8 md:grid-cols-2 2xl:grid-cols-3"
-          variants={containerVariants}
-        >
-          {siteConfig.projectItem.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ scale: 1.001 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Card className="border-2 border-primary/20 dark:bg-gray-800/50 bg-white/50 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all duration-300">
-                <CardBody className="p-0">
-                  <Image
-                    removeWrapper
-                    alt={project.label}
-                    className="object-contain sm:object-cover w-full sm:h-64"
-                    radius="md"
-                    src={project.image}
-                  />
-                  <div className="p-4">
-                    <h2 className="text-xl font-bold mb-2 flex items-center justify-center gap-2">
-                      {project.label}
-                      <Image
-                        alt="check icon"
-                        className="dark:invert"
-                        height={20}
-                        src="/icons/check.svg"
-                        width={20}
-                      />
-                    </h2>
-                    <p className="text-default-500 text-sm mb-4 line-clamp-2 h-fit">
-                      {project.des}
-                    </p>
-                    <div className="flex justify-center gap-4">
-                      {project.live && (
-                        <Link
-                          href={project.live}
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          <Button className="bg-primary text-white hover:bg-primary/80 transition-colors">
-                            Live Demo
-                            <Image
-                              alt="live"
-                              src="/project/live.png"
-                              width={20}
-                            />
-                          </Button>
-                        </Link>
-                      )}
-                      <Link
-                        href={project.github}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <Button className="bg-secondary text-white hover:bg-secondary/80 transition-colors">
-                          GitHub <GithubIcon />
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                </CardBody>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
-        <motion.div className="mt-12" variants={itemVariants}>
-          <Button
-            className="bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-6 rounded-full hover:opacity-80 transition-opacity"
-            onClick={() => (window.location.href = siteConfig.links.github)}
+    <section id="project" className="min-h-screen flex flex-col items-center px-4 py-10">
+      <div className="text-center w-full mb-10">
+        <SectionTitle side="right" title="Projects" />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-6xl">
+        {projectItems.map((project, index) => (
+          <Card
+            key={index}
+            className="shadow-lg dark:shadow-white/20 bg-light-background dark:bg-dark-background"
           >
-            See More Projects
-          </Button>
-        </motion.div>
-      </motion.div>
-    </motion.section>
+            <CardBody className="p-0 overflow-hidden">
+              <div className="relative  w-full h-52 overflow-hidden ">
+                
+                <Image
+                  removeWrapper
+                  alt={project.label}
+                  className="object-contain w-full h-full"
+                  src={project.image || "/placeholder.svg"}
+                  radius="none"
+                />
+              </div>
+
+              <div className="p-2">
+                <h2 className="text-xl font-bold mb-2 text-center text-light-text dark:text-dark-text border-b inline-block">
+                  {project.label}
+                </h2>
+                <p className="text-light-text/80 dark:text-dark-text/80 text-sm font-semibold mb-1">
+                  {project.time}
+                </p>
+                <p className="text-sm text-light-text/80 dark:text-dark-text/80 font-medium mb-2 line-clamp-3">
+                  {project.des}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="px-2 py-1 text-sm rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                
+
+                <div className="flex justify-center gap-4">
+                  {project.live && (
+                    <Button
+                      size="sm"
+                      onPress={() => router.push(project.live)}
+                      className="bg-light-primary dark:bg-dark-primary text-white hover:opacity-80"
+                    >
+                      Live Demo
+                      <Image src="/project/live.png" alt="live" width={20} />
+                    </Button>
+                  )}
+                  {project.github && (
+                    <Button
+                      size="sm"
+                      onPress={() => router.push(project.github)}
+                      className="bg-light-secondary dark:bg-dark-secondary text-white hover:opacity-80"
+                    >
+                      GitHub <GithubIcon />
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </CardBody>
+          </Card>
+        ))}
+      </div>
+    </section>
   );
 };
 

@@ -1,14 +1,14 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
+import Footer from "./_components/footer";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-import { HeartFilledIcon } from "@/components/icons";
+import { ScrollProvider } from "@/components/RefContext";
 
 export const metadata: Metadata = {
   title: {
@@ -18,6 +18,59 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   icons: {
     icon: "/favicon.ico",
+  },
+  keywords: [
+    "Full Stack Developer",
+    "Mohan Lal",
+    "JavaScript Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Portfolio by Mohanlal",
+    "CodeWithMohanlal",
+    "Mohanlal Developer",
+    "Mohanlal JavaScript Expert",
+    "Dynamic News Website by Mohanlal",
+    "Top Global News by CodeWithMohanlal",
+    "Web Development by Mohanlal",
+    "Hygraph CMS Developer Mohanlal",
+    "Learn Coding with Mohanlal",
+    "Coding Seekho with CodeWithMohanlal",
+    "Custom Web Applications by Mohanlal",
+    "Modern Frontend Developer Mohanlal",
+    "Backend API Developer Mohanlal",
+    "Responsive Web Design by CodeWithMohanlal",
+    "Advanced Next.js Applications by Mohanlal",
+  ],
+  authors: [{ name: "Mohan Lal", url: "https://github.com/mohanlal99" }],
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: "https://codewithmohanlal.vercel.app/",
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+    locale: "en_US",
+    type: "profile",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: ["/og-image.png"],
+    creator: "@mohanlal99",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://yourwebsite.com",
   },
 };
 
@@ -35,54 +88,20 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
-        )}
-      >
+          "min-h-screen bg-light-background dark:bg-dark-background font-sans antialiased",
+          fontSans.variable
+        )}>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
-            <main className="container mx-auto max-w-7xl flex-grow">
-              {/* <Navbar /> */}
-              {children}
+            <main className="container mx-auto max-w-7xl flex-grow bg-light-background dark:bg-dark-background">
+              <ScrollProvider>
+                <Navbar />
+                <div className="md:mx-20 xl:mx-28">{children}</div>
+              </ScrollProvider>
+              <Footer />
             </main>
-            {/* Footer Section */}
-            <footer className="flex flex-col items-center justify-center gap-4  p-10 dark:bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))] bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]">
-              <HeartFilledIcon />
-              <p className="font-bold text-inherit">Mohanlal</p>
-              <h2 className="text-3xl font-bold mb-4 text-default-400 ">
-                Follow Me
-              </h2>
-              <div className="flex gap-4">
-                <Link
-                  className="text-blue-400"
-                  href="https://www.linkedin.com/in/mohan-lal-4719a9315?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  LinkedIn
-                </Link>
-                <Link
-                  className="text-gray-400"
-                  href={siteConfig.links.github}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  GitHub
-                </Link>
-                <Link
-                  className="text-red-400"
-                  href="mailto:mohanlalv433@gmail.com"
-                >
-                  Email
-                </Link>
-                <Link className="text-green-400" href="tel:+918118862474">
-                  Phone
-                </Link>
-              </div>
-            </footer>
           </div>
         </Providers>
       </body>

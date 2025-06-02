@@ -1,15 +1,15 @@
 "use client";
 
 import { Image } from "@nextui-org/image";
-import { Link } from "@nextui-org/link";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+
+import SectionTitle from "./SectionTitle";
 
 const About = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [0.6, 3]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -22,106 +22,99 @@ const About = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        duration: 0.8,
+      },
+    },
   };
 
   return (
     <section
       ref={sectionRef}
-      className="shadow-xl flex flex-col md:flex-row min-h-screen items-center justify-center dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)] overflow-hidden"
+      className="relative min-h-screen  overflow-hidden"
       id="about"
     >
-      {/* <motion.div
-        className="md:w-1/2 p-8 flex justify-center items-center"
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        variants={imageVariants}
-      >
-        <Image
-          alt="Background"
-          removeWrapper
-          className="w-full max-w-md h-auto object-cover rounded-md shadow-2xl"
-          src="/about-background.jpg"
-        />
-      </motion.div> */}
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br " />
 
-      <motion.div
-        animate={isInView ? "visible" : "hidden"}
-        className="relative z-10 text-center md:text-left md:w-10/12 p-8"
-        initial="hidden"
-        variants={containerVariants}
-      >
-        <motion.div variants={itemVariants} className="text-center">
-          <Link
-            className="text-4xl text-center font-bold mb-6 inline-block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-            href="#about"
-          >
-            About Me
-          </Link>
-        </motion.div>
-
+      <SectionTitle side="right" title="About" />
+      <div className="relative z-10 container mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between">
+        {/* Left: About Content (70%) */}
         <motion.div
-          className="grid sm:grid-cols-2 grid-cols-1 gap-6 mb-8"
+          animate={isInView ? "visible" : "hidden"}
+          className="w-full md:w-[70%] pr-0 md:pr-12 mb-12 md:mb-0"
+          initial="hidden"
           variants={containerVariants}
         >
-          <motion.div
-            className="bg-background/50 backdrop-blur-md border border-primary/20 rounded-xl p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300"
-            style={{ scale }}
-            variants={cardVariants}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <motion.p
+            className="text-[18px] font- leading-relaxed text-justify mx-3 md:mx-8 text-[#666] mb-2 "
+            variants={itemVariants}
           >
-            <Image
-              alt="badge"
-              className="w-12 h-12 mb-4 dark:invert"
-              src="/icons/badgeicon.svg"
-            />
-            <h2 className="text-xl font-bold mb-2">Experience</h2>
-            <div className="flex flex-col text-center text-default-500">
-              <p className="text-lg font-semibold">1 year</p>
-              <p className="text-sm">Full Stack Developer</p>
-            </div>
-          </motion.div>
+            Hi, I&#39;m a passionate Full Stack Developer skilled in modern web
+            technologies like{" "}
+            <span className="font-semibold bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary bg-clip-text text-transparent">
+              TypeScript, React, Next.js, and MongoDB
+            </span>
+            . My focus is on crafting seamless and user-friendly digital
+            experiences. With a dedication to clean and efficient code, I aim to
+            solve real-world problems through innovative web applications.
+            I&#39;m constantly learning and adapting to new technologies to stay
+            at the forefront of web development.
+          </motion.p>
 
-          <motion.div
-            className="bg-background/50 backdrop-blur-md border border-primary/20 rounded-xl p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300"
-            style={{ scale }}
-            variants={cardVariants}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Image
-              alt="education"
-              className="w-12 h-12 mb-4 dark:invert"
-              src="/icons/education.svg"
-            />
-            <h2 className="text-xl font-bold mb-2">Education</h2>
-            <div className="flex flex-col text-center text-default-500">
-              <p className="text-lg font-semibold">2020-2023</p>
-              <p className="text-sm">B.Sc. Bachelor&#39;s Degree</p>
-            </div>
+          {/* Download Resume Button */}
+          <motion.div className="text-center" variants={itemVariants}>
+            <a
+              className="inline-flex items-center text-lg font-semibold rounded-xl hover:shadow-light-primary/20 dark:hover:shadow-dark-primary/20 transition-all duration-300 transform hover:-translate-y-1"
+              href="https://drive.google.com/file/d/1tRA-T2VfJ6qhT64fOOXjF-72tl4mPS5u/view?usp=sharing"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Download Resume
+              <svg
+                className="ml-2 w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                />
+              </svg>
+            </a>
           </motion.div>
         </motion.div>
 
-        <motion.p
-          className="max-w-4xl text-start mt-6 text-lg leading-relaxed"
+        {/* Right: GitHub GIF (30%) */}
+        <motion.div
+          animate={isInView ? "visible" : "hidden"}
+          className="w-full md:w-[30%] flex justify-center items-center"
+          initial="hidden"
           variants={itemVariants}
         >
-          A passionate and dedicated Full Stack Developer with a robust
-          foundation in modern web development technologies, including{" "}
-          <span className="font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Python, JavaScript, Django, React, Next.js, MongoDB, and MySQL
-          </span>
-          . Holding a Bachelor of Science degree from Maharaja Ganga Singh
-          University, I have developed a keen interest in creating innovative
-          and dynamic web applications.
-        </motion.p>
-      </motion.div>
+          <div className="relative w-full max-w-sm">
+            {/* Decorative elements */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary rounded-2xl blur opacity-30" />
+            <div className="relative">
+              <Image
+                removeWrapper
+                alt="GitHub Coding GIF"
+                className="rounded-xl shadow-2xl w-full transform hover:scale-105 transition-transform duration-500"
+                src="https://user-images.githubusercontent.com/74038190/212750672-2f3f2b50-c84f-4ed8-a60a-849ae69ff9df.gif"
+              />
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 };

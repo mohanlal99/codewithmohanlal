@@ -57,13 +57,13 @@ const ContactSection = () => {
   return (
     <motion.section
       animate="visible"
-      className="flex flex-col items-center justify-center gap-4 min-h-[60vh] p-10 bg-gradient-to-br from-gray-900 to-gray-800 text-white"
+      className="flex flex-col items-center justify-center gap-4 min-h-[60vh] p-10 bg-gradient-to-br "
       id="contact"
       initial="hidden"
       variants={containerVariants}
     >
       <motion.h2
-        className="text-4xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent"
+        className="text-4xl font-bold mb-8 bg-gradient-to-r from-purple-400 via-blue-500 to-pink-600 bg-clip-text text-transparent hover:from-green-400 hover:via-blue-400 hover:to-purple-600 transition duration-300 ease-in-out"
         variants={itemVariants}
       >
         Get In Touch

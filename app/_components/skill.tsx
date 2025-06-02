@@ -2,13 +2,113 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Image } from "@nextui-org/react";
+import {
+  Heading5Icon as Html5,
+  CodepenIcon as Css3,
+  CodepenIcon as Javascript,
+  CodepenIcon as ReactIcon,
+  Database,
+  GitBranch,
+  DatabaseZap,
+  Code2,
+  Server,
+  Layout,
+  KeyRound,
+  GitGraphIcon as Graph,
+} from "lucide-react";
 
-import { siteConfig } from "@/config/site";
+import SectionTitle from "./SectionTitle";
 
 const Skills = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+
+  const skillsData = [
+    {
+      label: "JavaScript",
+      icon: Javascript,
+      color: "text-yellow-400",
+      bgColor: "bg-yellow-400/10",
+      borderColor: "border-yellow-400/20",
+    },
+    {
+      label: "React",
+      icon: ReactIcon,
+      color: "text-blue-400",
+      bgColor: "bg-blue-400/10",
+      borderColor: "border-blue-400/20",
+    },
+    {
+      label: "Next.js",
+      icon: Server,
+      color: "text-light-primary dark:text-dark-primary",
+      bgColor: "bg-light-primary/10 dark:bg-dark-primary/10",
+      borderColor: "border-light-primary/20 dark:border-dark-primary/20",
+    },
+    {
+      label: "HTML5",
+      icon: Html5,
+      color: "text-orange-500",
+      bgColor: "bg-orange-500/10",
+      borderColor: "border-orange-500/20",
+    },
+    {
+      label: "CSS3",
+      icon: Css3,
+      color: "text-blue-500",
+      bgColor: "bg-blue-500/10",
+      borderColor: "border-blue-500/20",
+    },
+    {
+      label: "Tailwind",
+      icon: Layout,
+      color: "text-cyan-400",
+      bgColor: "bg-cyan-400/10",
+      borderColor: "border-cyan-400/20",
+    },
+    {
+      label: "MongoDB",
+      icon: Database,
+      color: "text-green-500",
+      bgColor: "bg-green-500/10",
+      borderColor: "border-green-500/20",
+    },
+    {
+      label: "Firebase",
+      icon: DatabaseZap,
+      color: "text-blue-600",
+      bgColor: "bg-blue-600/10",
+      borderColor: "border-blue-600/20",
+    },
+    {
+      label: "Git",
+      icon: GitBranch,
+      color: "text-red-500",
+      bgColor: "bg-red-500/10",
+      borderColor: "border-red-500/20",
+    },
+    {
+      label: "TypeScript",
+      icon: Code2,
+      color: "text-blue-500",
+      bgColor: "bg-blue-500/10",
+      borderColor: "border-blue-500/20",
+    },
+    {
+      label: "Clerk",
+      icon: KeyRound,
+      color: "text-violet-500",
+      bgColor: "bg-violet-500/10",
+      borderColor: "border-violet-500/20",
+    },
+    {
+      label: "Hygraph",
+      icon: Graph,
+      color: "text-emerald-500",
+      bgColor: "bg-emerald-500/10",
+      borderColor: "border-emerald-500/20",
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -28,103 +128,105 @@ const Skills = () => {
       transition: {
         type: "spring",
         stiffness: 100,
+        damping: 12,
       },
     },
   };
 
+  const proficiencyLevels = [
+    { level: "Beginner", percentage: 25, color: "from-blue-400 to-blue-600" },
+    {
+      level: "Intermediate",
+      percentage: 50,
+      color: "from-green-400 to-green-600",
+    },
+    {
+      level: "Advanced",
+      percentage: 75,
+      color: "from-yellow-400 to-yellow-600",
+    },
+    { level: "Expert", percentage: 100, color: "from-red-400 to-red-600" },
+  ];
+
   return (
     <section
       ref={sectionRef}
-      className="relative shadow-lg p-10 flex flex-col md:flex-row md:min-h-[100vh] min-h-[80vh] items-center justify-center bg-gradient-to-b from-purple-100 to-purple-300 dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800 overflow-hidden"
+      className="min-h-screen bg-light-background dark:bg-dark-background px-4 pb-12 relative overflow-hidden"
       id="skills"
     >
-      {/* Background Image Animation */}
-      <motion.div
-        animate={
-          isInView ? { opacity: 0.1, scale: 1 } : { opacity: 0, scale: 0.8 }
-        }
-        className="absolute inset-0 z-0 flex justify-center items-center"
-        initial={{ opacity: 0, scale: 0.8 }}
-        transition={{ duration: 1 }}
-      >
-        <Image
-          alt="Background"
-          className="animate-pulse w-[500px] h-[500px] object-cover opacity-50"
-          src="/project/skill.png"
-        />
-      </motion.div>
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
 
-      {/* Main Content */}
       <motion.div
         animate={isInView ? "visible" : "hidden"}
-        className="text-center relative z-10"
+        className="max-w-7xl mx-auto relative z-10"
         initial="hidden"
         variants={containerVariants}
       >
-        <motion.h2
-          className="text-4xl font-extrabold mb-6 bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-500"
+        {/* <motion.h2
+          className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary bg-clip-text text-transparent"
           variants={itemVariants}
         >
-          My Skills
-        </motion.h2>
+          Technical Skills
+        </motion.h2> */}
+        <SectionTitle side="left" title="Technical Skills" />
 
         <motion.div
-          className="grid gap-5 xl:grid-cols-6 grid-cols-2 md:grid-cols-4 sm:grid-cols-3 transition-all duration-500"
+          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-20"
           variants={containerVariants}
         >
-          {siteConfig.skillMenuItem.map((item, index) => (
+          {skillsData.map((skill, index) => (
             <motion.div
               key={index}
-              className="p-4 border-2 border-purple-500 rounded-xl font-bold text-purple-600 dark:text-white hover:bg-purple-500 hover:text-white transition-all duration-300 transform hover:scale-110 shadow-lg bg-white dark:bg-gray-800"
+              className={`relative group p-6 rounded-xl border ${skill.borderColor} ${skill.bgColor} backdrop-blur-sm transition-all duration-300 hover:scale-105`}
               variants={itemVariants}
             >
-              {item.label}
+              <div className="flex flex-col items-center gap-4">
+                {React.createElement(skill.icon, {
+                  className: `w-12 h-12 ${skill.color} transition-transform duration-300 group-hover:scale-110`,
+                  strokeWidth: 1.5,
+                })}
+                <span className={`font-medium ${skill.color}`}>
+                  {skill.label}
+                </span>
+              </div>
             </motion.div>
           ))}
         </motion.div>
 
-        <motion.div
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          className="mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        >
-          <h3 className="text-2xl font-semibold mb-6 dark:text-gray-300">
-            Skill Proficiency
-          </h3>
-          <div className="flex flex-wrap justify-center gap-8">
-            {["Beginner", "Intermediate", "Advanced", "Expert"].map(
-              (level, index) => (
-                <div key={level} className="w-full sm:w-1/4 flex-grow">
-                  <h4 className="text-lg font-medium mb-2">{level}</h4>
-                  <motion.div
-                    animate={isInView ? { width: "100%" } : { width: 0 }}
-                    className="h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
-                    initial={{ width: 0 }}
-                    transition={{
-                      delay: 0.8 + index * 0.2,
-                      duration: 1,
-                      ease: "easeOut",
-                    }}
-                  >
-                    <motion.div
-                      animate={
-                        isInView
-                          ? { width: `${(index + 1) * 25}%` }
-                          : { width: 0 }
-                      }
-                      className="h-full bg-gradient-to-r from-purple-500 to-pink-500 dark:from-blue-500 dark:to-purple-500"
-                      initial={{ width: 0 }}
-                      transition={{
-                        delay: 1 + index * 0.2,
-                        duration: 1.5,
-                        ease: "easeOut",
-                      }}
-                    />
-                  </motion.div>
+        <motion.div className="mt-20" variants={containerVariants}>
+          <motion.h3
+            className="text-3xl font-bold text-center mb-12 text-light-text dark:text-dark-text"
+            variants={itemVariants}
+          >
+            Proficiency Levels
+          </motion.h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {proficiencyLevels.map((item, index) => (
+              <motion.div
+                key={item.level}
+                className="relative"
+                variants={itemVariants}
+              >
+                <div className="text-center mb-4">
+                  <h4 className="text-xl font-medium text-light-text dark:text-dark-text">
+                    {item.level}
+                  </h4>
                 </div>
-              ),
-            )}
+                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <motion.div
+                    animate={
+                      isInView
+                        ? { width: `${item.percentage}%` }
+                        : { width: "0%" }
+                    }
+                    className={`h-full bg-gradient-to-r ${item.color}`}
+                    initial={{ width: "0%" }}
+                    transition={{ duration: 1.5, delay: index * 0.2 }}
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </motion.div>
