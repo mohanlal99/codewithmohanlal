@@ -1,14 +1,35 @@
 "use client";
 
-import { Image, Link } from "@nextui-org/react";
-import {  motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { Linkedin, Mail } from "lucide-react";
-
+import React, { useState, useEffect } from "react";
+import { Mail, Linkedin, Download, ChevronDown } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
+import { useScroll } from "@/components/RefContext";
+import { motion } from "framer-motion";
 
-const HomeSection = () => {
-  const [index, setIndex] = useState(0);
+const socialLinks = [
+  {
+    href: "mailto:mohanlalv433@gmail.com",
+    icon: Mail,
+    label: "Email",
+    color: "hover:bg-red-500",
+  },
+  {
+    href: "https://www.linkedin.com/in/mohan-lal-4719a9315",
+    icon: Linkedin,
+    label: "LinkedIn",
+    color: "hover:bg-blue-600",
+  },
+  {
+    href: "https://github.com/mohanlal99",
+    icon: GithubIcon,
+    label: "GitHub",
+    color: "hover:bg-gray-700",
+  },
+];
+
+const HomeSection: React.FC = () => {
+  const { aboutRef, scrollToSection } = useScroll();
+
   const skills = [
     "Javascript",
     "Typescript",
@@ -18,120 +39,101 @@ const HomeSection = () => {
     "Tailwind CSS",
     "MongoDB",
   ];
-  const socialLinks = [
-    {
-      href: "mailto:mohanlalv433@gmail.com",
-      icon: <Mail />,
-      label: "Email",
-    },
-    {
-      href: "https://www.linkedin.com/in/mohan-lal-4719a9315",
-      icon: <Linkedin />,
-      label: "LinkedIn",
-    },
-    {
-      href: "https://github.com/mohanlal99",
-      icon: <GithubIcon />,
-      label: "GitHub",
-    },
-  ];
 
-  const RotatingText = () => {
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setIndex((prevIndex) => (prevIndex + 1) % skills.length);
-      }, 2000);
+  const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
 
-      return () => clearInterval(interval);
-    }, []);
-
-    return (
-      <motion.div>
-        <motion.span
-          key={index}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          initial={{ y: 20, opacity: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {skills[index]}
-        </motion.span>
-      </motion.div>
-    );
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSkillIndex((prev) => (prev + 1) % skills.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <motion.section
-      animate={{ opacity: 1 }}
-      className="flex flex-col mb-20 items-center justify-center bg-light-background dark:bg-dark-background"
+    <section
       id="home"
-      initial={{ opacity: 0 }}
-      transition={{ duration: 1 }}
-    >
-      <div className="flex flex-col md:flex-row items-center ">
-        <motion.div
-          animate={{ x: 0, opacity: 1 }}
-          className="relative z-10 text-center font-extrabold md:text-left md:w-1/2 p-8 m-3"
-          initial={{ x: -50, opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <motion.span
-            animate={{ y: 0, opacity: 1 }}
-            className="text-light-text ml-1 dark:text-dark-text"
-            initial={{ y: -20, opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            Hi, I{`'`}m
-          </motion.span>
-          <motion.h1
-            animate={{ y: 0, opacity: 1 }}
-            className="sm:text-4xl text-3xl md:text-7xl font-bold text-light-primary dark:text-dark-primary"
-            initial={{ y: -20, opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-          >
-            Mohanlal
-          </motion.h1>
-          <motion.div
-            animate={{ y: 0, opacity: 1 }}
-            className="mt-4 text-lg capitalize text-light-text dark:text-dark-text"
-            initial={{ y: 20, opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.9 }}
-          >
-            full stack developer passionate about modern web
-            technologies like{" "}
-            <span className="text-light-secondary dark:text-dark-secondary font-bold text-xl">
-              <RotatingText />
-            </span>
-          </motion.div>
-          <div className="mt-6 flex space-x-4">
-            {socialLinks.map((link, index) => (
-              <Link
-                key={index}
-                isExternal
-                aria-label={link.label}
-                className="flex items-center justify-center w-12 h-12 rounded-full border border-light-secondary dark:border-dark-secondary bg-light-primary/10 dark:bg-dark-primary/10 text-light-primary dark:text-dark-secondary hover:bg-light-secondary dark:hover:bg-dark-background transition-colors duration-300"
-                href={link.href}
-                rel="noopener noreferrer"
-              >
-                {link.icon}
-              </Link>
-            ))}
+      className="relative min-h-screen flex items-center justify-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between">
+          {/* Content */}
+          <div className="text-center md:text-left mb-8 md:mb-0">
+            <div className="space-y-6">
+              <div>
+                <p className="text-lg text-gray-600 dark:text-gray-400 mb-2">
+                  Hi, I'm
+                </p>
+                <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4">
+                  Mohanlal
+                </h1>
+              </div>
+
+              <div className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p className="mb-2">
+                  Full Stack Developer passionate about modern web technologies
+                  like{" "}
+                </p>
+                <div className="inline-flex items-center">
+                  <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+                    {skills[currentSkillIndex]}
+                  </span>
+                </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="flex justify-center md:justify-start space-x-4">
+                {socialLinks.map((link, index) => (
+                  <a
+                    key={index}
+                    href={link.href}
+                    target={
+                      link.href.startsWith("mailto:") ? undefined : "_blank"
+                    }
+                    rel="noopener noreferrer"
+                    className={`group flex items-center justify-center w-12 h-12 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 ${link.color} hover:text-white`}
+                    aria-label={link.label}>
+                    <link.icon className="w-5 h-5 text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors" />
+                  </a>
+                ))}
+              </div>
+
+              {/* CTA Button */}
+            </div>
           </div>
-        </motion.div>
-        <motion.div
-          animate={{ scale: 1, opacity: 1 }}
-          className=" mt-5 md:w-1/2 md:blur-0 flex justify-end items-end p-3"
-          initial={{ scale: 0.8, opacity: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <Image
-            alt="Background"
-            className="w-80 object-cover shadow-white/90 shadow-2xl m-2 rounded-full "
-            src="/myimage.png"
-          />
-        </motion.div>
+
+          {/* Profile Image */}
+          <div className="md:w-1/2 flex justify-center py-12">
+            {/* Animate on mount with a slight pop + rotate */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, rotate: 0 }}
+              animate={{ opacity: 1, scale: 1, rotate: 360 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="relative">
+              {/* Glowing gradient ring with continuous spin */}
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-400 blur-xl opacity-40 animate-spinner-linear-spin"></div>
+
+              {/* Container that ensures the face is fully visible by pinning image to top-center */}
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 overflow-hidden rounded-full bg-gray-50 shadow-2xl border-4 border-white">
+                <img
+                  src="/myimage.png"
+                  alt="Mohanlal"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+          <button
+            onClick={() => scrollToSection(aboutRef)}
+            className="flex flex-col items-center space-y-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors animate-bounce">
+            <span className="text-sm">Scroll down</span>
+            <ChevronDown className="w-5 h-5" />
+          </button>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

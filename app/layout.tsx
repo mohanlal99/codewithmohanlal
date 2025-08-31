@@ -7,7 +7,7 @@ import Footer from "./_components/footer";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { ScrollProvider } from "@/components/RefContext";
 
 export const metadata: Metadata = {
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://yourwebsite.com",
+    canonical: "https://codewithmohanlal.vercel.app",
   },
 };
 
@@ -94,15 +94,18 @@ export default function RootLayout({
           fontSans.variable
         )}>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
-            <main className="container mx-auto max-w-7xl flex-grow bg-light-background dark:bg-dark-background">
-              <ScrollProvider>
-                <Navbar />
-                <div className="md:mx-20 xl:mx-28">{children}</div>
-              </ScrollProvider>
-              <Footer />
-            </main>
-          </div>
+          <ScrollProvider>
+            <div
+              className="min-h-screen bg-white dark:bg-gray-900 
+             bg-[url('/video.mp4')] bg-no-repeat bg-center bg-cover bg-fixed 
+             transition-colors duration-300">
+              <Navbar />
+              <main className="container mx-auto max-w-7xl flex-grow">
+                {children}
+                <Footer />
+              </main>
+            </div>
+          </ScrollProvider>
         </Providers>
       </body>
     </html>

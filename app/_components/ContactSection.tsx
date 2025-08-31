@@ -1,132 +1,141 @@
-"use client";
-
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@nextui-org/button";
-import { Input, Textarea } from "@nextui-org/input";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Send, Check } from "lucide-react";
 
-const ContactSection = () => {
+const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-
-    setFormData((prevState) => ({
-      ...prevState,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Message sent successfully!");
+    setIsSubmitting(true);
+
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+
+    setIsSubmitting(false);
+    setIsSubmitted(true);
     setFormData({ name: "", email: "", message: "" });
-  };
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
+    // Reset success state after 3s
+    setTimeout(() => setIsSubmitted(false), 3000);
   };
 
   return (
-    <motion.section
-      animate="visible"
-      className="flex flex-col items-center justify-center gap-4 min-h-[60vh] p-10 bg-gradient-to-br "
-      id="contact"
-      initial="hidden"
-      variants={containerVariants}
-    >
-      <motion.h2
-        className="text-4xl font-bold mb-8 bg-gradient-to-r from-purple-400 via-blue-500 to-pink-600 bg-clip-text text-transparent hover:from-green-400 hover:via-blue-400 hover:to-purple-600 transition duration-300 ease-in-out"
-        variants={itemVariants}
-      >
-        Get In Touch
-      </motion.h2>
-      <motion.div
-        className="text-center w-full max-w-md p-8 rounded-lg shadow-2xl bg-gray-800 backdrop-blur-lg border border-gray-700"
-        variants={itemVariants}
-      >
-        <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-          <motion.div
-            className="flex flex-col md:flex-row gap-4"
-            variants={itemVariants}
-          >
-            <Input
-              required
-              className="flex-1"
-              name="name"
-              placeholder="Full Name"
-              value={formData.name}
-              variant="bordered"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              className="flex-1"
-              name="email"
-              placeholder="Email"
-              type="email"
-              value={formData.email}
-              variant="bordered"
-              onChange={handleChange}
-            />
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <Textarea
-              required
-              className="w-full"
-              minRows={4}
-              name="message"
-              placeholder="Your Message"
-              value={formData.message}
-              variant="bordered"
-              onChange={handleChange}
-            />
-          </motion.div>
-          <motion.div
-            variants={itemVariants}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button
-              className="mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 rounded-full hover:opacity-90 transition-all duration-300"
-              type="submit"
+    <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Name + Email */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >
-              Send Message
-            </Button>
-          </motion.div>
-        </form>
-      </motion.div>
+              Full Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
+                focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              placeholder="Name"
+            />
+          </div>
 
-      <ToastContainer position="bottom-right" />
-    </motion.section>
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
+                focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              placeholder="@example.com"
+            />
+          </div>
+        </div>
+
+        {/* Message */}
+        <div>
+          <label
+            htmlFor="message"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+          >
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+            rows={6}
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+              bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
+              focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
+            placeholder="Write your message..."
+          />
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          disabled={isSubmitting || isSubmitted}
+          className="w-full bg-gradient-to-r from-blue-500 to-emerald-500 text-white 
+            py-4 px-6 rounded-lg font-semibold 
+            hover:from-blue-600 hover:to-emerald-600 
+            focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
+            disabled:opacity-50 disabled:cursor-not-allowed 
+            transition-all duration-300 flex items-center justify-center space-x-2"
+        >
+          {isSubmitting ? (
+            <>
+              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+              <span>Sending...</span>
+            </>
+          ) : isSubmitted ? (
+            <>
+              <Check className="w-5 h-5" />
+              <span>Message Sent!</span>
+            </>
+          ) : (
+            <>
+              <Send className="w-5 h-5" />
+              <span>Send Message</span>
+            </>
+          )}
+        </button>
+      </form>
+    </div>
   );
 };
 
-export default ContactSection;
+export default ContactForm;

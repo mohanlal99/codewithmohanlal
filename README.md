@@ -1,53 +1,64 @@
-# Next.js & NextUI Template
+# 🌐 Personal Portfolio - Mohanlal
 
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
+A modern, responsive personal portfolio website showcasing projects, skills, and achievements as a Full-Stack Web Developer.  
+The portfolio highlights professional work, hackathon achievements, and personal initiatives with clean UI and smooth navigation.
 
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
+🔗 **Live Website**: [codewithmohanlal.vercel.app](https://codewithmohanlal.vercel.app)  
 
-## Technologies Used
+---
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+## ✨ Features
 
-## How to Use
+- 🖥️ **About Me**: A professional introduction and career journey.  
+- 💼 **Projects Showcase**: Detailed case studies of full-stack and frontend projects.  
+- 🏆 **Hackathon Achievement**: Highlight of Masai Hackathon 48-hour project (MemeHub).  
+- 🛠️ **Skills Section**: Technical and soft skills with visual representation.  
+- 🎓 **Education**: B.Sc (Maharaja Ganga Singh University) & Full-Stack Development (Masai School).  
+- 📞 **Contact Section**: Easy ways to connect via LinkedIn, GitHub, and Email.  
+- 📱 **Responsive Design**: Mobile-first and user-friendly experience.  
 
-### Use the template with create-next-app
+---
 
-To create a new project based on this template using `create-next-app`, run the following command:
+## 🛠️ Tech Stack
 
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
+**Frontend**  
+- Next.js  
+- Tailwind CSS  
+- NextUI Components  
 
-### Install dependencies
+**Backend (for projects integration)**  
+- Node.js & Express  
+- MongoDB (Mongoose)  
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+**Others**  
+- JWT Authentication (role-based access)  
+- Vercel (deployment)  
+- GitHub (version control)  
 
-```bash
-npm install
-```
+---
 
-### Run the development server
+## 📂 Project Highlights
 
-```bash
-npm run dev
-```
+### 📰 Top Global News  
+A modern news website with multiple categories, authentication, and admin dashboard.  
+🔗 [Live](https://topglobalnews.in)  
 
-### Setup pnpm (optional)
+### 😂 MemeHub (Hackathon Project)  
+A meme-based social platform with AI meme creator, meme battles, and community engagement features.  
+🔗 [Live](https://memehub-nu.vercel.app/) 
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+### 🧠 Memory Lane  
+A digital scrapbook app to organize and relive memories with albums, tags, and AI-generated videos.  
+🔗 [Live](https://memory-lane-rosy.vercel.app/)  
 
-```bash
-public-hoist-pattern[]=*@nextui-org/*
-```
+---
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+## 📧 Contact
 
-## License
+- LinkedIn: [mohanlal99](https://www.linkedin.com/in/mohan-lal-4719a9315)  
+- GitHub: [mohanlal99](https://github.com/mohanlal99)  
+- Email: **mohanlalv433@gmail.com**  
 
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
+---
+
+⭐ This portfolio is a continuous work-in-progress, showcasing growth as a developer while learning, building, and sharing projects.

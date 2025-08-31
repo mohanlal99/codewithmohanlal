@@ -1,92 +1,99 @@
 "use client";
 
-import { Button } from "@nextui-org/button";
-import { Card, CardBody } from "@nextui-org/card";
-import { Image } from "@nextui-org/image";
-import { useRouter } from "next/navigation";
+import React from "react";
+import { ExternalLink, Github, Calendar } from "lucide-react";
 import SectionTitle from "./SectionTitle";
-import { GithubIcon } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 
-// Sample helper function to calculate days ago
-
-const Projects = () => {
-  const router = useRouter();
-  const projectItems = siteConfig.projectItem.slice(0); // Use full list or slice as needed
+const Projects: React.FC = () => {
+  const formatDate = (timeString: string) => {
+    // If your "time" is not a date, just return it directly
+    const maybeDate = Date.parse(timeString);
+    if (isNaN(maybeDate)) return timeString;
+    return new Date(maybeDate).toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric",
+    });
+  };
 
   return (
-    <section id="project" className="min-h-screen flex flex-col items-center px-4 py-10">
-      <div className="text-center w-full mb-10">
-        <SectionTitle side="right" title="Projects" />
-      </div>
+    <section id="projects" className="">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionTitle title="Projects" side="left" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-6xl">
-        {projectItems.map((project, index) => (
-          <Card
-            key={index}
-            className="shadow-lg dark:shadow-white/20 bg-light-background dark:bg-dark-background"
-          >
-            <CardBody className="p-0 overflow-hidden">
-              <div className="relative  w-full h-52 overflow-hidden ">
-                
-                <Image
-                  removeWrapper
-                  alt={project.label}
-                  className="object-contain w-full h-full"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {siteConfig.projectItem.map((project, index) => (
+            <div
+              key={index}
+              className="group bg-gray-50 md:m-10 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
+              {/* Project Image */}
+              <div className="relative h-48 overflow-hidden">
+                <img
                   src={project.image || "/placeholder.svg"}
-                  radius="none"
+                  alt={project.label}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
-              <div className="p-2">
-                <h2 className="text-xl font-bold mb-2 text-center text-light-text dark:text-dark-text border-b inline-block">
-                  {project.label}
-                </h2>
-                <p className="text-light-text/80 dark:text-dark-text/80 text-sm font-semibold mb-1">
-                  {project.time}
-                </p>
-                <p className="text-sm text-light-text/80 dark:text-dark-text/80 font-medium mb-2 line-clamp-3">
+              {/* Project Content */}
+              <div className="p-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    {project.label}
+                  </h3>
+                  {project.time && (
+                    <div className="flex items-center space-x-1 text-sm text-gray-500 dark:text-gray-400">
+                      <Calendar className="w-4 h-4" />
+                      <span>{formatDate(project.time)}</span>
+                    </div>
+                  )}
+                </div>
+
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   {project.des}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tag, i) => (
+              
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2">
+                  {project.tech?.map((tech: string, i: number) => (
                     <span
                       key={i}
-                      className="px-2 py-1 text-sm rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                    >
-                      {tag}
+                      className="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full font-medium">
+                      {tech}
                     </span>
                   ))}
                 </div>
 
-                
-
-                <div className="flex justify-center gap-4">
+                {/* Action Buttons */}
+                <div className="flex space-x-4 pt-4">
                   {project.live && (
-                    <Button
-                      size="sm"
-                      onPress={() => router.push(project.live)}
-                      className="bg-light-primary dark:bg-dark-primary text-white hover:opacity-80"
-                    >
-                      Live Demo
-                      <Image src="/project/live.png" alt="live" width={20} />
-                    </Button>
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200">
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Live Demo</span>
+                    </a>
                   )}
+
                   {project.github && (
-                    <Button
-                      size="sm"
-                      onPress={() => router.push(project.github)}
-                      className="bg-light-secondary dark:bg-dark-secondary text-white hover:opacity-80"
-                    >
-                      GitHub <GithubIcon />
-                    </Button>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200">
+                      <Github className="w-4 h-4" />
+                      <span>Source Code</span>
+                    </a>
                   )}
                 </div>
               </div>
-            </CardBody>
-          </Card>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

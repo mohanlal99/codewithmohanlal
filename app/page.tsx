@@ -3,10 +3,12 @@ import { useEffect } from "react";
 
 import { useScroll } from "@/components/RefContext";
 import About from "./_components/about";
-import { GithubStatus } from "./_components/github";
+
 import HomeSection from "./_components/HomeSection";
 import Projects from "./_components/project";
 import Skills from "./_components/skill";
+import { GitHubStatus } from "./_components/github";
+import ContactSection from "./_components/ContactSection";
 
 export default function Home() {
   useEffect(() => {
@@ -36,13 +38,13 @@ export default function Home() {
         <Projects />
       </div>
 
-      <GithubStatus />
+      <GitHubStatus />
 
       {/* Blog Section */}
       {/* <BlogSection /> */}
 
       {/* Contact Section */}
-      <div ref={contactRef}>{/* <ContactSection /> */}</div>
+      {/* <div ref={contactRef}><ContactSection /></div> */}
     </>
   );
 }
