@@ -36,7 +36,7 @@ const BlogSection = () => {
     <motion.section
       ref={ref}
       animate={controls}
-      className="sm:p-2 min-h-screen px-3 flex flex-col items-center justify-center bg-light-background dark:bg-dark-background"
+      className="sm:p-2  px-3 flex flex-col items-center justify-center bg-light-background dark:bg-dark-background"
       id="blog"
       initial="hidden"
       variants={containerVariants}

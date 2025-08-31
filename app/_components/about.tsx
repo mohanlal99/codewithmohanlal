@@ -37,7 +37,7 @@ const About = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen  overflow-hidden"
+      className="relative  overflow-hidden"
       id="about"
     >
       {/* Background Gradient */}
