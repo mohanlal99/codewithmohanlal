@@ -43,7 +43,7 @@ export const siteConfig = {
 
   links: {
     github: "https://github.com/mohanlal99",
-    resume: "../public/resume.png"
+    resume: "../public/resume.png",
   },
   projectItem: [
     {
@@ -52,8 +52,8 @@ export const siteConfig = {
       live: "https://memory-lane-rosy.vercel.app/",
       github: "#",
       time: "Built in 3 days",
-      
-      tech: ["HTML", "CSS", "JavaScript", 'Git',"Github", "Vercel"],
+
+      tech: ["HTML", "CSS", "JavaScript", "Git", "Github", "Vercel"],
       image: "project/memorylane.jpg",
     },
     {
@@ -62,27 +62,44 @@ export const siteConfig = {
       live: "https://memehub-nu.vercel.app/",
       github: "#",
       time: "Built in 2 days",
-      
-      tech: ["HTML", "CSS", "JavaScript",'Git',"Github", "Vercel"],
+
+      tech: ["HTML", "CSS", "JavaScript", "Git", "Github", "Vercel"],
       image: "project/memehub.jpg",
     },
-          {
-    label: "AI Quiz Application",
-    des: "Interactive AI-powered quiz application with results tracking, local storage, and a responsive design. Includes modern UI with navigation and social links.",
-    live: "https://ai-quiz-application.vercel.app/",  // replace with your actual deployed link
-    github: "https://github.com/mohanlal99/AI-Quiz-Application/",
-    time: "Built in 3 days",
-    
-    tech: ["React", "Tailwind CSS", "Lucide Icons", "React Router", "Local Storage", "Git", "Github", "Vercel"],
-    image: "project/aiquiz.png", // replace with your screenshot image path
-  },
+    {
+      label: "AI Quiz Application",
+      des: "Interactive AI-powered quiz application with results tracking, local storage, and a responsive design. Includes modern UI with navigation and social links.",
+      live: "https://ai-quiz-application.vercel.app/", // replace with your actual deployed link
+      github: "https://github.com/mohanlal99/AI-Quiz-Application/",
+      time: "Built in 3 days",
+
+      tech: [
+        "React",
+        "Tailwind CSS",
+        "Lucide Icons",
+        "React Router",
+        "Local Storage",
+        "Git",
+        "Github",
+        "Vercel",
+      ],
+      image: "project/aiquiz.png", 
+    },
     {
       label: "Amigo Immigration Services",
       des: "Responsive website for an immigration consultancy with clean UI and service-focused design.",
       live: "https://amigoimmigrant.com/",
       github: "https://github.com/mohanlal99/amigoimmigration",
       time: "Built in 5 days",
-      tech: ["Next.js", "Tailwind CSS", "Next UI", "Mongodb",'Git',"Github", "Vercel"],
+      tech: [
+        "Next.js",
+        "Tailwind CSS",
+        "Next UI",
+        "Mongodb",
+        "Git",
+        "Github",
+        "Vercel",
+      ],
       image: "project/amigoimmigration.jpg",
     },
     {
@@ -91,7 +108,15 @@ export const siteConfig = {
       live: "https://online-courses-portal.vercel.app/",
       github: "https://github.com/mohanlal99/online-course-portal",
       time: "Built in 6 days",
-      tech: ["Next.js", "Tailwind CSS", "Hygraph", "Clerk", 'Git',"Github", "Vercel"],
+      tech: [
+        "Next.js",
+        "Tailwind CSS",
+        "Hygraph",
+        "Clerk",
+        "Git",
+        "Github",
+        "Vercel",
+      ],
       image: "project/onlinecourseportal.jpg",
     },
     {
@@ -100,7 +125,16 @@ export const siteConfig = {
       live: "https://topglobalnews.in",
       github: "https://github.com/mohanlal99/Top-Global-News",
       time: "Built in 7 days",
-      tech: ["Next.js", "Tailwind CSS", "MongoDB", "JWT", "Rest Api", 'Git',"Github", "Vercel"],
+      tech: [
+        "Next.js",
+        "Tailwind CSS",
+        "MongoDB",
+        "JWT",
+        "Rest Api",
+        "Git",
+        "Github",
+        "Vercel",
+      ],
       image: "project/topglobalnews.jpg",
     },
 
@@ -137,7 +171,6 @@ export const siteConfig = {
     //   tech: ["React", "Spotify API", "CSS"],
     //   image: "project/spotifyclone.jpg",
     // },
-    
   ],
   MyBlog: [
     {

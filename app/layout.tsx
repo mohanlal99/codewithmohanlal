@@ -1,84 +1,19 @@
-import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
-import clsx from "clsx";
+import './globals.css';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 
-import { Providers } from "./providers";
-import Footer from "./_components/footer";
-
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
-import Navbar from "@/components/navbar";
-import { ScrollProvider } from "@/components/RefContext";
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  icons: {
-    icon: "/favicon.ico",
-  },
-  keywords: [
-    "Full Stack Developer",
-    "Mohan Lal",
-    "JavaScript Developer",
-    "React Developer",
-    "Next.js Developer",
-    "Portfolio by Mohanlal",
-    "CodeWithMohanlal",
-    "Mohanlal Developer",
-    "Mohanlal JavaScript Expert",
-    "Dynamic News Website by Mohanlal",
-    "Top Global News by CodeWithMohanlal",
-    "Web Development by Mohanlal",
-    "Hygraph CMS Developer Mohanlal",
-    "Learn Coding with Mohanlal",
-    "Coding Seekho with CodeWithMohanlal",
-    "Custom Web Applications by Mohanlal",
-    "Modern Frontend Developer Mohanlal",
-    "Backend API Developer Mohanlal",
-    "Responsive Web Design by CodeWithMohanlal",
-    "Advanced Next.js Applications by Mohanlal",
-  ],
-  authors: [{ name: "Mohan Lal", url: "https://github.com/mohanlal99" }],
+  title: 'Mohan Lal - Full Stack Developer',
+  description: 'Dynamic Full Stack Web Developer skilled in JavaScript, React, Node.js, and MongoDB. Portfolio showcasing scalable and responsive applications.',
+  keywords: 'Full Stack Developer, JavaScript, React, Node.js, MongoDB, Web Developer, Portfolio',
+  authors: [{ name: 'Mohan Lal' }],
   openGraph: {
-    title: siteConfig.name,
-    description: siteConfig.description,
-    url: "https://codewithmohanlal.vercel.app/",
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
-    ],
-    locale: "en_US",
-    type: "profile",
+    title: 'Mohan Lal - Full Stack Developer',
+    description: 'Dynamic Full Stack Web Developer Portfolio',
+    type: 'website',
   },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: ["/og-image.png"],
-    creator: "@mohanlal99",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: "https://codewithmohanlal.vercel.app",
-  },
-};
-
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
 };
 
 export default function RootLayout({
@@ -87,27 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
-      <body
-        className={clsx(
-          "min-h-screen bg-light-background dark:bg-dark-background font-sans antialiased",
-          fontSans.variable
-        )}>
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <ScrollProvider>
-            <div
-              className="min-h-screen bg-white dark:bg-gray-900 
-             bg-[url('/video.mp4')] bg-no-repeat bg-center bg-cover bg-fixed 
-             transition-colors duration-300">
-              <Navbar />
-              <main className="container mx-auto max-w-7xl flex-grow">
-                {children}
-                <Footer />
-              </main>
-            </div>
-          </ScrollProvider>
-        </Providers>
-      </body>
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
