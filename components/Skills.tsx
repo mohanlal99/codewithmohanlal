@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const Skills = () => {
   const skillCategories = [
     {
@@ -11,7 +13,7 @@ const Skills = () => {
         { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
         { name: 'React.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
         { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
-        { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg' }
+        { name: 'Tailwind CSS', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png' }
       ]
     },
     {
@@ -71,7 +73,9 @@ const Skills = () => {
                     className="flex flex-col items-center gap-3 p-4 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200"
                   >
                     <div className="w-12 h-12 flex items-center justify-center">
-                      <img 
+                      <Image
+                      width={100}
+                      height={100}
                         src={skill.icon} 
                         alt={skill.name}
                         className="w-10 h-10 object-contain"
@@ -103,25 +107,33 @@ const Skills = () => {
           </h3>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
-              <img 
-                src="https://github-readme-stats.vercel.app/api?username=mohanlal&show_icons=true&theme=default&hide_border=true" 
+              <Image
+              width={100}
+              height={100}
+                src="https://github-readme-stats.vercel.app/api?username=mohanlal99&show_icons=true&theme=default&hide_border=true" 
                 alt="GitHub Stats"
                 className="w-full h-auto dark:hidden"
               />
-              <img 
-                src="https://github-readme-stats.vercel.app/api?username=mohanlal&show_icons=true&theme=dark&hide_border=true" 
+              <Image
+              width={100}
+              height={100}
+                src="https://github-readme-stats.vercel.app/api?username=mohanlal99&show_icons=true&theme=dark&hide_border=true" 
                 alt="GitHub Stats"
                 className="w-full h-auto hidden dark:block"
               />
             </div>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
-              <img 
-                src="https://github-readme-streak-stats.herokuapp.com/?user=mohanlal&theme=default&hide_border=true" 
+              <Image
+              width={100}
+              height={100}
+                src="https://github-readme-streak-stats.herokuapp.com/?user=mohanlal99&theme=default&hide_border=true" 
                 alt="GitHub Streak"
                 className="w-full h-auto dark:hidden"
               />
-              <img 
-                src="https://github-readme-streak-stats.herokuapp.com/?user=mohanlal&theme=dark&hide_border=true" 
+              <Image
+              width={100}
+              height={100}
+                src="https://github-readme-streak-stats.herokuapp.com/?user=mohanlal99&theme=dark&hide_border=true" 
                 alt="GitHub Streak"
                 className="w-full h-auto hidden dark:block"
               />

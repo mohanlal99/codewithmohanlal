@@ -1,3 +1,6 @@
+import { GithubIcon } from "@/components/icons";
+import { Linkedin, Mail } from "lucide-react";
+
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
@@ -206,4 +209,24 @@ export const siteConfig = {
       `,
     },
   ],
+  socialLinks : [
+  {
+    href: "mailto:mohanlalv433@gmail.com",
+    icon: Mail,
+    label: "Email",
+    color: "hover:bg-red-500",
+  },
+  {
+    href: "https://www.linkedin.com/in/mohanlal99",
+    icon: Linkedin,
+    label: "LinkedIn",
+    color: "hover:bg-lime-600",
+  },
+  {
+    href: "https://github.com/mohanlal99",
+    icon: GithubIcon,
+    label: "GitHub",
+    color: "hover:bg-green-700",
+  },
+]
 };
