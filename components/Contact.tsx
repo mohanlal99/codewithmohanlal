@@ -82,8 +82,8 @@ const Contact = () => {
 
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
       {/* Contact Information */}
-      <div className="space-y-8 overflow-hidden">
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+      <div className="space-y-8 ">
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg overflow-hidden">
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
             Contact Information
           </h3>
@@ -118,7 +118,7 @@ const Contact = () => {
         </div>
 
         {/* Resume Section */}
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
             Resume
           </h3>

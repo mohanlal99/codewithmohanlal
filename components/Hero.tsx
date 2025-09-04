@@ -39,7 +39,7 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br  ">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br  from-slate-50 via-blue-50 to-lime-100 dark:from-gray-900 dark:via-slate-900 dark:to-gray-800">
       {/* Background Pattern */}
       <div className="absolute inset-0">
         {/* Subtle Dot Pattern */}
@@ -168,7 +168,7 @@ const Hero = () => {
               <span className="hidden sm:inline">Email</span>
             </Link>
             <a
-              href="https://linkedin.com/in/mohan-lal"
+              href="https://linkedin.com/in/mohanlal99"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-white dark:hover:bg-gray-700 hover:text-blue-800 dark:hover:text-blue-400 transition-all duration-300 border border-white/50 dark:border-gray-700/50"
@@ -178,7 +178,7 @@ const Hero = () => {
               <span className="hidden sm:inline">LinkedIn</span>
             </a>
             <a
-              href="https://github.com/mohanlal"
+              href="https://github.com/mohanlal99"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-white dark:hover:bg-gray-700 hover:text-blue-800 dark:hover:text-blue-400 transition-all duration-300 border border-white/50 dark:border-gray-700/50"
