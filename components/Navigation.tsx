@@ -65,9 +65,8 @@ const Navigation = () => {
   const handleResumeDownload = () => {
     // Create a download link for the resume
     const link = document.createElement("a");
-    link.href = "/Mohan-Lal-Resume.pdf"; // This would be the actual resume file
-    link.download =
-      "https://drive.usercontent.google.com/u/0/uc?id=1LitTvfZ-M_fdiX6l2M-QAcsVh5xG5KWU&export=download";
+    link.href = "https://drive.usercontent.google.com/u/0/uc?id=1LitTvfZ-M_fdiX6l2M-QAcsVh5xG5KWU&export=download";
+    link.download = "Mohan-Lal_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

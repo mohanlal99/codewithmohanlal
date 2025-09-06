@@ -251,7 +251,7 @@ const Hero = () => {
           </p>
 
           {/* Social Links */}
-          <div className="flex justify-center space-x-6 mb-12">
+          <div className="flex flex-wrap justify-center space-x-6 mb-12">
             <Link
               href="mailto:mohanlalv433@gmail.com"
               className="flex items-center gap-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-white dark:hover:bg-gray-700 hover:text-blue-800 dark:hover:text-blue-400 transition-all duration-300 border border-white/50 dark:border-gray-700/50"

@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, MapPin, GraduationCap, Code } from "lucide-react";
+import { Calendar, MapPin, GraduationCap, Code, Link2Icon } from "lucide-react";
 
 const About = () => {
   return (
@@ -46,11 +46,24 @@ const About = () => {
 
             {/* Quick Stats */}
             <div className="grid sm:grid-cols-2 gap-6">
-              <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-xl text-center">
+              <div className="relative bg-blue-200/30 dark:bg-blue-900/30 p-6 rounded-xl text-center">
+               <div className="absolute top-2 right-2 bg-gradient-to-r from-orange-400 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+                  ACTIVE
+                </div>
                 <div className="text-3xl font-bold text-blue-800 dark:text-blue-400 mb-2">140+</div>
-                <div className="text-gray-600 dark:text-gray-300">LeetCode Problems</div>
+                <a 
+                  href="https://leetcode.com/u/mohanlal99/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-600 dark:text-gray-300 hover:text-blue-800 dark:hover:text-blue-400 font-medium transition-colors duration-200"
+                >
+                  LeetCode Problems
+                </a>
               </div>
-              <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-xl text-center">
+              <div className="relative bg-amber-200/30 dark:bg-amber-900/30 p-6 rounded-xl text-center">
+               <div className="absolute top-2 right-2 bg-gradient-to-r from-green-400 to-green-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+                  DONE
+                </div>
                 <div className="text-3xl font-bold text-amber-600 dark:text-amber-400 mb-2">5+</div>
                 <div className="text-gray-600 dark:text-gray-300">Projects Completed</div>
               </div>
