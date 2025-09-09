@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, MapPin, GraduationCap, Code, Link2Icon } from "lucide-react";
+import { Calendar, MapPin, GraduationCap, Code, Link2Icon, ExternalLink } from "lucide-react";
 
 const About = () => {
   return (
@@ -55,9 +55,9 @@ const About = () => {
                   href="https://leetcode.com/u/mohanlal99/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-300 hover:text-blue-800 dark:hover:text-blue-400 font-medium transition-colors duration-200"
+                  className="text-gray-600 relative dark:text-gray-300 hover:text-blue-800 dark:hover:text-blue-400 font-medium transition-colors duration-200"
                 >
-                  LeetCode Problems
+                  <span>LeetCode Problems</span> <span className="absolute -right-2 top-0 "><ExternalLink size={8}/></span>
                 </a>
               </div>
               <div className="relative bg-amber-200/30 dark:bg-amber-900/30 p-6 rounded-xl text-center">

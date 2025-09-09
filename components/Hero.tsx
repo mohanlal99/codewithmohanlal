@@ -47,73 +47,15 @@ const Hero = () => {
     aboutSection?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Tech icons for floating animation
-  const techIcons = [
-    { Icon: Code, delay: 0, duration: 20 },
-    { Icon: Database, delay: 2, duration: 25 },
-    { Icon: Globe, delay: 4, duration: 22 },
-    { Icon: Smartphone, delay: 6, duration: 18 },
-    { Icon: Cpu, delay: 8, duration: 24 },
-    { Icon: Zap, delay: 10, duration: 21 },
-    { Icon: Terminal, delay: 12, duration: 19 },
-    { Icon: Layers, delay: 14, duration: 23 },
-  ];
-
-  const handleResumeView = () => {
-    // Open resume in Google Drive (placeholder URL)
-    window.open(
-      "https://drive.google.com/file/d/1LitTvfZ-M_fdiX6l2M-QAcsVh5xG5KWU/view",
-      "_blank"
-    );
-  };
 
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br  from-slate-50 via-blue-50 to-lime-100 dark:from-gray-900 dark:via-slate-900 dark:to-gray-800">
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br  from-gray-50 via-grya-50 to-gray-100 dark:from-gray-900 dark:via-slate-900 dark:to-gray-800">
       {/* Background Pattern */}
+      
       <div className="absolute inset-0">
-        {/* Subtle Dot Pattern */}
-        <div className="absolute inset-0 opacity-30 dark:opacity-5">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none">
-            <defs>
-              <pattern
-                id="dots"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse">
-                <circle
-                  cx="10"
-                  cy="10"
-                  r="1"
-                  fill="currentColor"
-                  className="text-blue-400 dark:text-blue-600"
-                />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#dots)" />
-          </svg>
-        </div>
-
-        {/* Floating Tech Icons */}
-        <div className="absolute inset-0 pointer-events-none">
-          {techIcons.map((item, index) => (
-            <div
-              key={index}
-              className="absolute opacity-10 dark:opacity-15 text-blue-600 dark:text-blue-400"
-              style={{
-                left: `${15 + index * 10}%`,
-                top: `${20 + (index % 3) * 25}%`,
-                animation: `float-tech ${item.duration}s ease-in-out infinite`,
-                animationDelay: `${item.delay}s`,
-              }}>
-              <item.Icon size={40 + (index % 3) * 10} />
-            </div>
-          ))}
-        </div>
+        
 
         {/* Decorative Lines */}
         <svg
@@ -211,27 +153,99 @@ const Hero = () => {
         </div>
       </div>
 
+
+    
+
+    {/* Box lines */}
+    <div className="absolute inset-0 opacity-5 dark:opacity-10">
+            <svg
+              className="w-full h-full"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <defs>
+                <pattern
+                  id="grid"
+                  width="10"
+                  height="10"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M 10 0 L 0 0 0 10"
+                    fill="none"
+                    stroke="rgba(59, 130, 246, 0.3)"
+                    strokeWidth="0.5"
+                  />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+          </div>
+
+    {/* line Svg */}
+        <svg
+            className="absolute inset-0 w-full h-full opacity-10 dark:opacity-20"
+            viewBox="0 0 1000 1000"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            <defs>
+              <linearGradient
+                id="flowGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor="rgba(59, 130, 246, 0)" />
+                <stop offset="50%" stopColor="rgba(59, 130, 246, 0.8)" />
+                <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
+              </linearGradient>
+            </defs>
+
+            {[...Array(5)].map((_, i) => (
+              <path
+                key={i}
+                d={`M0,${200 + i * 150} Q250,${100 + i * 150} 500,${200 + i * 150} T1000,${200 + i * 150}`}
+                stroke="url(#flowGradient)"
+                strokeWidth="2"
+                fill="none"
+                className="animate-pulse"
+                style={{
+                  animationDuration: `${4 + i}s`,
+                  animationDelay: `${i * 0.5}s`,
+                  transform: `translateX(${Math.sin(scrollY * 0.01 + i) * 20}px)`,
+                }}
+              />
+            ))}
+          </svg>
+
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div className="text-center">
           {/* Profile Image */}
           <div className="mb-8">
-            <div className="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-blue-800 to-blue-600 flex items-center justify-center shadow-2xl ring-4 ring-white/50 dark:ring-white/20 hover:ring-blue-400/50 transition-all duration-300 hover:shadow-blue-500/25">
-              <Image
-                quality={100}
-                priority={true}
-                src="/myimage.png"
-                alt="Profile Picture"
-                className="w-48 h-48 rounded-full object-top object-cover"
-                width={100}
-                height={100}
-              />
+              <div 
+                className="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-blue-800 to-blue-600 flex items-center justify-center shadow-2xl ring-4 ring-white/50 dark:ring-white/20 hover:ring-blue-400/50 transition-all duration-500 hover:shadow-blue-500/25 relative overflow-hidden group"
+                style={{
+                  transform: `scale(${1 + Math.sin(scrollY * 0.005) * 0.05})`,
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                <Image
+                  quality={100}
+                  priority={true}
+                  src="/myimage.png"
+                  alt="Profile Picture"
+                  className="w-48 h-48 rounded-full object-top object-cover relative z-10"
+                  width={192}
+                  height={192}
+                />
+              </div>
             </div>
-          </div>
 
           {/* Name and Title */}
           <div>
-            <p className="text-lg md:text-base text-gray-500 dark:text-gray-400 mb-2 tracking-wide drop-shadow-sm">
+            <p className="text-lg md:text-base text-gray-500 dark:text-gray-400 tracking-wide drop-shadow-sm">
               Hi, I&#39;m
             </p>
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4 drop-shadow-sm">
@@ -244,7 +258,7 @@ const Hero = () => {
             Full Stack Developer passionate about modern web technologies like{" "}
             <br />
             <span
-              className=" inline-block ml-2 text-blue-800 dark:text-blue-300 font-semibold bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg border border-blue-200/50 dark:border-blue-700/50 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+              className=" inline-block ml-2 text-blue-800 dark:text-blue-300 font-semibold bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 rounded-lg shadow-lg border border-blue-200/50 dark:border-blue-700/50 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
               aria-live="polite">
               {skill}
             </span>
