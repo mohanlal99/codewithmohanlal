@@ -6,6 +6,7 @@
   const inter = Inter({ subsets: ['latin'] });
 
   export const metadata: Metadata = {
+    metadataBase: new URL('https://codewithmohanlal.vercel.app/'),
     title: 'Mohan Lal - Full Stack Developer',
     description: 'Dynamic Full Stack Web Developer skilled in JavaScript, React, Node.js, and MongoDB. Portfolio showcasing scalable and responsive applications.',
     keywords: 'Mohanlal codewithmohanlal web developer, full stack developer, javascript, react, node.js, mongodb, portfolio, next.js, tailwind css',
@@ -18,6 +19,15 @@
       title: 'Mohan Lal - Full Stack Developer',
       description: 'Dynamic Full Stack Web Developer Portfolio',
       type: 'website',
+       url: 'https://codewithmohanlal.vercel.app/', 
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Mohan Lal Portfolio',
+      },
+    ],
     },
   };
 

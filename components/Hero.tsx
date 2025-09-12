@@ -47,16 +47,28 @@ const Hero = () => {
     aboutSection?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleClick = () => {
+    window.open(
+      "https://drive.google.com/file/d/1LitTvfZ-M_fdiX6l2M-QAcsVh5xG5KWU/view",
+      "_blank"
+    );
+
+    const link = document.createElement("a");
+    link.href =
+      "https://drive.google.com/uc?export=download&id=1LitTvfZ-M_fdiX6l2M-QAcsVh5xG5KWU";
+    link.download = "Mohanlal_Resume.pdf"; // optional filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <section
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br  from-gray-50 via-grya-50 to-gray-100 dark:from-gray-900 dark:via-slate-900 dark:to-gray-800">
       {/* Background Pattern */}
-      
-      <div className="absolute inset-0">
-        
 
+      <div className="absolute inset-0">
         {/* Decorative Lines */}
         <svg
           className="absolute inset-0 w-full h-full opacity-5 dark:opacity-10"
@@ -153,95 +165,84 @@ const Hero = () => {
         </div>
       </div>
 
-
-    
-
-    {/* Box lines */}
-    <div className="absolute inset-0 opacity-5 dark:opacity-10">
-            <svg
-              className="w-full h-full"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-            >
-              <defs>
-                <pattern
-                  id="grid"
-                  width="10"
-                  height="10"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <path
-                    d="M 10 0 L 0 0 0 10"
-                    fill="none"
-                    stroke="rgba(59, 130, 246, 0.3)"
-                    strokeWidth="0.5"
-                  />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-          </div>
-
-    {/* line Svg */}
+      {/* Box lines */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10">
         <svg
-            className="absolute inset-0 w-full h-full opacity-10 dark:opacity-20"
-            viewBox="0 0 1000 1000"
-            preserveAspectRatio="xMidYMid slice"
-          >
-            <defs>
-              <linearGradient
-                id="flowGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="rgba(59, 130, 246, 0)" />
-                <stop offset="50%" stopColor="rgba(59, 130, 246, 0.8)" />
-                <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
-              </linearGradient>
-            </defs>
-
-            {[...Array(5)].map((_, i) => (
+          className="w-full h-full"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none">
+          <defs>
+            <pattern
+              id="grid"
+              width="10"
+              height="10"
+              patternUnits="userSpaceOnUse">
               <path
-                key={i}
-                d={`M0,${200 + i * 150} Q250,${100 + i * 150} 500,${200 + i * 150} T1000,${200 + i * 150}`}
-                stroke="url(#flowGradient)"
-                strokeWidth="2"
+                d="M 10 0 L 0 0 0 10"
                 fill="none"
-                className="animate-pulse"
-                style={{
-                  animationDuration: `${4 + i}s`,
-                  animationDelay: `${i * 0.5}s`,
-                  transform: `translateX(${Math.sin(scrollY * 0.01 + i) * 20}px)`,
-                }}
+                stroke="rgba(59, 130, 246, 0.3)"
+                strokeWidth="0.5"
               />
-            ))}
-          </svg>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      </div>
+
+      {/* line Svg */}
+      <svg
+        className="absolute inset-0 w-full h-full opacity-10 dark:opacity-20"
+        viewBox="0 0 1000 1000"
+        preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="rgba(59, 130, 246, 0)" />
+            <stop offset="50%" stopColor="rgba(59, 130, 246, 0.8)" />
+            <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
+          </linearGradient>
+        </defs>
+
+        {[...Array(5)].map((_, i) => (
+          <path
+            key={i}
+            d={`M0,${200 + i * 150} Q250,${100 + i * 150} 500,${
+              200 + i * 150
+            } T1000,${200 + i * 150}`}
+            stroke="url(#flowGradient)"
+            strokeWidth="2"
+            fill="none"
+            className="animate-pulse"
+            style={{
+              animationDuration: `${4 + i}s`,
+              animationDelay: `${i * 0.5}s`,
+              transform: `translateX(${Math.sin(2 * 0.01 + i) * 20}px)`,
+            }}
+          />
+        ))}
+      </svg>
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div className="text-center">
           {/* Profile Image */}
           <div className="mb-8">
-              <div 
-                className="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-blue-800 to-blue-600 flex items-center justify-center shadow-2xl ring-4 ring-white/50 dark:ring-white/20 hover:ring-blue-400/50 transition-all duration-500 hover:shadow-blue-500/25 relative overflow-hidden group"
-                style={{
-                  transform: `scale(${1 + Math.sin(scrollY * 0.005) * 0.05})`,
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                <Image
-                  quality={100}
-                  priority={true}
-                  src="/myimage.png"
-                  alt="Profile Picture"
-                  className="w-48 h-48 rounded-full object-top object-cover relative z-10"
-                  width={192}
-                  height={192}
-                />
-              </div>
+            <div
+              className="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-blue-800 to-blue-600 flex items-center justify-center shadow-2xl ring-4 ring-white/50 dark:ring-white/20 hover:ring-blue-400/50 transition-all duration-500 hover:shadow-blue-500/25 relative overflow-hidden group"
+              style={{
+                transform: `scale(${1 + Math.sin(2 * 0.005) * 0.05})`,
+              }}>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <Image
+                quality={100}
+                priority={true}
+                src="/myimage.png"
+                alt="Profile Picture"
+                className="w-48 h-48 rounded-full object-top object-cover relative z-10"
+                width={192}
+                height={192}
+              />
             </div>
+          </div>
 
           {/* Name and Title */}
           <div>
@@ -291,16 +292,12 @@ const Hero = () => {
               <GithubIcon />
               <span className="hidden sm:inline">GitHub</span>
             </a>
-            <a
-              href="https://drive.google.com/file/d/1LitTvfZ-M_fdiX6l2M-QAcsVh5xG5KWU/view"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-white dark:hover:bg-gray-700 hover:text-blue-800 dark:hover:text-blue-400 transition-all duration-300 border border-white/50 dark:border-gray-700/50"
-              aria-label="View Resume">
-              <Send size={20}/>
+            <button
+              onClick={handleClick}
+              className="flex items-center gap-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-white dark:hover:bg-gray-700 hover:text-blue-800 dark:hover:text-blue-400 transition-all duration-300 border border-white/50 dark:border-gray-700/50">
+              <Send size={20} />
               <span className="hidden sm:inline">View Resume</span>
-            </a>
-            
+            </button>
           </div>
 
           {/* Scroll indicator */}

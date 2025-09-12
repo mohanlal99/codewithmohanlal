@@ -71,6 +71,20 @@ const Navigation = () => {
     link.click();
     document.body.removeChild(link);
   };
+   const handleClick = () => {
+    window.open(
+      "https://drive.google.com/file/d/1LitTvfZ-M_fdiX6l2M-QAcsVh5xG5KWU/view",
+      "_blank"
+    );
+
+    const link = document.createElement("a");
+    link.href =
+      "https://drive.google.com/uc?export=download&id=1LitTvfZ-M_fdiX6l2M-QAcsVh5xG5KWU";
+    link.download = "Mohanlal_Resume.pdf"; // optional filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <nav
@@ -111,7 +125,7 @@ const Navigation = () => {
               )}
             </button>
             <button
-              onClick={handleResumeDownload}
+              onClick={handleClick}
               className="flex items-center gap-2 bg-blue-800 dark:bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-900 dark:hover:bg-blue-700 transition-colors duration-200">
               <Download size={16} />
               Resume
