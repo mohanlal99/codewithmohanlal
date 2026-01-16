@@ -1,145 +1,222 @@
 "use client";
 
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import Image from "next/image";
+import { Code2, Server, Wrench, Sparkles, Zap } from "lucide-react";
 
 const Skills = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   const skillCategories = [
     {
-      title: 'Frontend Technologies',
-      color: 'bg-blue-50 dark:bg-blue-900/30 border-blue-200 dark:border-blue-700',
+      title: "Frontend",
+      icon: Code2,
+      color: "from-blue-500 to-cyan-500",
+      bgColor: "bg-blue-500/10",
+      borderColor: "border-blue-500/20",
       skills: [
-        { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-        { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-        { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-        { name: 'React.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-        { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
-        { name: 'Tailwind CSS', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png' }
-      ]
+        { name: "React.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", level: 90 },
+        { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", level: 85 },
+        { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", level: 80 },
+        { name: "Tailwind CSS", icon: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg", level: 95 },
+        { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", level: 90 },
+        { name: "HTML/CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", level: 95 },
+      ],
     },
     {
-      title: 'Backend Technologies',
-      color: 'bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-700',
+      title: "Backend",
+      icon: Server,
+      color: "from-emerald-500 to-teal-500",
+      bgColor: "bg-emerald-500/10",
+      borderColor: "border-emerald-500/20",
       skills: [
-        { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
-        { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
-        { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
-        { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
-        { name: 'REST APIs', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg' },
-        { name: 'JWT', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/json/json-original.svg' }
-      ]
+        { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", level: 85 },
+        { name: "Express.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", level: 85 },
+        { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", level: 80 },
+        { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg", level: 75 },
+        { name: "REST APIs", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg", level: 85 },
+        { name: "Socket.io", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg", level: 70 },
+      ],
     },
     {
-      title: 'Tools & Platforms',
-      color: 'bg-purple-50 dark:bg-purple-900/30 border-purple-200 dark:border-purple-700',
+      title: "Tools & Platforms",
+      icon: Wrench,
+      color: "from-violet-500 to-purple-500",
+      bgColor: "bg-violet-500/10",
+      borderColor: "border-violet-500/20",
       skills: [
-        { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-        { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg' },
-        { name: 'VS Code', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' },
-        { name: 'Vercel', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg' },
-        { name: 'Postman', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg' },
-        { name: 'Figma', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg' }
-      ]
-    }
+        { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", level: 90 },
+        { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", level: 90 },
+        { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg", level: 95 },
+        { name: "Vercel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg", level: 85 },
+        { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg", level: 80 },
+        { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", level: 70 },
+      ],
+    },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <section id="skills" className="py-20 bg-slate-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Technical Skills
+    <section id="skills" className="py-12 relative overflow-hidden" ref={ref}>
+      {/* Background Decorations */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-72 h-72 bg-violet-500/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={isInView ? { scale: 1 } : {}}
+            transition={{ delay: 0.2, type: "spring" }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium rounded-full mb-4"
+          >
+            <Sparkles className="w-4 h-4" />
+            My Expertise
+          </motion.div>
+          <h2 className="text-4xl md:text-5xl font-bold font-space-grotesk text-gray-900 dark:text-white mb-4">
+            Technical <span className="gradient-text">Skills</span>
           </h2>
-          <div className="w-24 h-1 bg-amber-500 mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A comprehensive toolkit for building modern, scalable web applications
           </p>
-        </div>
+        </motion.div>
 
-        {/* Technical Skills Grid */}
-        <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
-            <div 
-              key={index} 
-              className={`bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 ${category.color}`}
+        {/* Skills Grid - All Categories */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="space-y-12"
+        >
+          {skillCategories.map((category, categoryIndex) => (
+            <motion.div
+              key={categoryIndex}
+              variants={itemVariants}
+              className="relative"
             >
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8 text-center">
-                {category.title}
-              </h3>
-              
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-                {category.skills.map((skill, skillIndex) => (
-                  <div 
-                    key={skillIndex}
-                    className="flex flex-col items-center gap-3 p-4 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200"
+              {/* Category Card */}
+              <div className={`glass-card rounded-3xl p-8 md:p-10 border ${category.borderColor} overflow-hidden`}>
+                {/* Background Gradient */}
+                <div className={`absolute top-0 right-0 w-64 h-64 ${category.bgColor} rounded-full blur-3xl -z-10`} />
+                
+                {/* Category Header */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
+                  <motion.div 
+                    className={`p-4 rounded-2xl bg-gradient-to-br ${category.color} shadow-lg`}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 400 }}
                   >
-                    <div className="w-12 h-12 flex items-center justify-center">
-                      <Image
-                      width={100}
-                      height={100}
-                        src={skill.icon} 
-                        alt={skill.name}
-                        className="w-10 h-10 object-contain"
-                        onError={(e) => {
-                          // Fallback to a simple colored circle if image fails to load
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          const fallback = document.createElement('div');
-                          fallback.className = 'w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm';
-                          fallback.textContent = skill.name.charAt(0);
-                          target.parentNode?.appendChild(fallback);
-                        }}
-                      />
-                    </div>
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center">
-                      {skill.name}
-                    </span>
+                    <category.icon className="w-8 h-8 text-white" />
+                  </motion.div>
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                      {category.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 mt-1">
+                      {category.title === "Frontend" && "Building beautiful, responsive user interfaces"}
+                      {category.title === "Backend" && "Creating robust and scalable server solutions"}
+                      {category.title === "Tools & Platforms" && "Leveraging modern development tools"}
+                    </p>
                   </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+                </div>
 
-        {/* GitHub Stats */}
-        <div className="mt-16 text-center">
-          <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">
-            GitHub Statistics
-          </h3>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
-              <Image
-              width={100}
-              height={100}
-                src="https://github-readme-stats.vercel.app/api?username=mohanlal99&show_icons=true&theme=default&hide_border=true" 
-                alt="GitHub Stats"
-                className="w-full h-auto dark:hidden"
-              />
-              <Image
-              width={100}
-              height={100}
-                src="https://github-readme-stats.vercel.app/api?username=mohanlal99&show_icons=true&theme=dark&hide_border=true" 
-                alt="GitHub Stats"
-                className="w-full h-auto hidden dark:block"
-              />
-            </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
-              <Image
-              width={100}
-              height={100}
-                src="https://github-readme-streak-stats.herokuapp.com/?user=mohanlal99&theme=default&hide_border=true" 
-                alt="GitHub Streak"
-                className="w-full h-auto dark:hidden"
-              />
-              <Image
-              width={100}
-              height={100}
-                src="https://github-readme-streak-stats.herokuapp.com/?user=mohanlal99&theme=dark&hide_border=true" 
-                alt="GitHub Streak"
-                className="w-full h-auto hidden dark:block"
-              />
-            </div>
+                {/* Skills Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+                  {category.skills.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ 
+                        delay: 0.3 + categoryIndex * 0.1 + skillIndex * 0.05,
+                        type: "spring",
+                        stiffness: 200
+                      }}
+                      whileHover={{ y: -8, scale: 1.02 }}
+                      className="group"
+                    >
+                      <div className="relative bg-white dark:bg-gray-800/80 rounded-2xl p-5 text-center hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700/50 h-full">
+                        {/* Hover Glow Effect */}
+                        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                        
+                        {/* Skill Icon */}
+                        <div className="relative w-14 h-14 mx-auto mb-4">
+                          <div className="absolute inset-0 bg-gray-100 dark:bg-gray-700 rounded-xl" />
+                          <Image
+                            src={skill.icon}
+                            alt={skill.name}
+                            width={56}
+                            height={56}
+                            className="relative z-10 w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-300"
+                          />
+                        </div>
+                        
+                        {/* Skill Name */}
+                        <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 block mb-3">
+                          {skill.name}
+                        </span>
+
+                        {/* Progress Bar */}
+                        <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={isInView ? { width: `${skill.level}%` } : {}}
+                            transition={{ 
+                              delay: 0.5 + categoryIndex * 0.1 + skillIndex * 0.05, 
+                              duration: 0.8,
+                              ease: "easeOut"
+                            }}
+                            className={`h-full rounded-full bg-gradient-to-r ${category.color}`}
+                          />
+                        </div>
+
+                      
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 1 }}
+          className="mt-16 text-center"
+        >
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-violet-500/10 to-fuchsia-500/10 rounded-full border border-violet-500/20">
+            <Zap className="w-5 h-5 text-violet-500" />
+            <span className="text-gray-700 dark:text-gray-300">
+              Always learning and exploring new technologies
+            </span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

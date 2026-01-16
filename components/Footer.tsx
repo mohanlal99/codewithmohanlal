@@ -1,91 +1,135 @@
 "use client";
 
-import { ArrowUp, Linkedin, Mail } from "lucide-react";
-import { GithubIcon, HeartFilledIcon } from "./icons";
+import { motion } from "framer-motion";
+import { ArrowUp, Heart, Linkedin, Github, Mail, Coffee } from "lucide-react";
 
 const Footer = () => {
-  const handleScrollToTop = () => {
+  const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const scrollToSection = (href: string) => {
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
   const currentYear = new Date().getFullYear();
 
+  const footerLinks = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "#contact" },
+  ];
+
+  const socialLinks = [
+    { icon: Github, href: "https://github.com/mohanlal99", label: "GitHub" },
+    { icon: Linkedin, href: "https://linkedin.com/in/mohanlal99", label: "LinkedIn" },
+    { icon: Mail, href: "mailto:mohanlalv433@gmail.com", label: "Email" },
+  ];
+
   return (
-    <footer className="bg-white text-gray-800 dark:bg-gray-800 dark:text-white py-12 relative border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          {/* Logo/Name */}
+    <footer className="relative bg-gray-50 dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-800">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-violet-500/5 to-transparent pointer-events-none" />
 
-          {/* Social Links */}
-          <div className="flex justify-center space-x-6 mb-8">
-            <a
-              href="mailto:mohanlalv433@gmail.com"
-              className="bg-gray-100 p-3 rounded-full hover:bg-blue-100 transition-colors duration-200 shadow-sm"
-              aria-label="Email"
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid md:grid-cols-3 gap-12">
+          {/* Brand */}
+          <div className="space-y-4">
+            <motion.a
+              href="#home"
+              onClick={(e) => { e.preventDefault(); scrollToSection("#home"); }}
+              className="inline-block text-3xl font-bold font-space-grotesk"
+              whileHover={{ scale: 1.05 }}
             >
-              <Mail size={20} className="text-gray-700 hover:text-blue-600" />
-            </a>
-            <a
-              href="https://linkedin.com/in/mohanlal99"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gray-100 p-3 rounded-full hover:bg-blue-100 transition-colors duration-200 shadow-sm"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={20} className="text-gray-700 hover:text-blue-600" />
-            </a>
-            <a
-              href="https://github.com/mohanlal99"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gray-100 p-3 rounded-full hover:bg-blue-100 transition-colors duration-200 shadow-sm"
-              aria-label="GitHub"
-            >
-              <GithubIcon size={20} className="text-gray-700 hover:text-blue-600" />
-            </a>
-          </div>
-
-          {/* Quick Navigation */}
-          <nav className="mb-8">
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              {["Home", "About Me", "Skills", "Projects", "Contact"].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => {
-                    const element = document.querySelector(
-                      `#${item.toLowerCase().replace(" ", "-").replace(" me", "")}`
-                    );
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
+              <span className="gradient-text">M</span>
+              <span className="text-gray-900 dark:text-white">ohan</span>
+            </motion.a>
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Full Stack Developer crafting exceptional digital experiences with modern technologies.
+            </p>
+            <div className="flex gap-3">
+              {socialLinks.map((item, index) => (
+                <motion.a
+                  key={index}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all text-gray-600 dark:text-gray-400 hover:text-violet-600 dark:hover:text-violet-400"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label={item.label}
                 >
-                  {item}
-                </button>
+                  <item.icon className="w-5 h-5" />
+                </motion.a>
               ))}
             </div>
-          </nav>
+          </div>
 
-          {/* Copyright */}
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-            <HeartFilledIcon color="red" className="w-4 h-4 animate-pulse" />
-            <span>
-              Designed with love by{" "}
-              <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
-                Mohanlal
-              </span>{" "}
-            </span>
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              Quick Links
+            </h3>
+            <nav className="space-y-3">
+              {footerLinks.map((link) => (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.href)}
+                  className="block text-gray-600 dark:text-gray-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+                >
+                  {link.name}
+                </button>
+              ))}
+            </nav>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              Get In Touch
+            </h3>
+            <div className="space-y-3 text-gray-600 dark:text-gray-400">
+              <p>mohanlalv433@gmail.com</p>
+              <p>+91 8118862474</p>
+              <p>Rajasthan, India</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
+              Made with 
+              <Heart className="w-4 h-4 text-red-500 animate-pulse" /> 
+              & 
+              <Coffee className="w-4 h-4 text-amber-600" />
+              by
+              <span className="font-semibold gradient-text">Mohan Lal</span>
+              © {currentYear}
+            </p>
+
+            <p className="text-sm text-gray-500 dark:text-gray-500">
+              Building the future, one line of code at a time.
+            </p>
           </div>
         </div>
       </div>
 
       {/* Scroll to Top Button */}
-      <button
-        onClick={handleScrollToTop}
-        className="absolute bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-200 transform hover:scale-110"
+      <motion.button
+        onClick={scrollToTop}
+        className="fixed bottom-8 right-8 p-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-violet-500/25 z-50"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
         aria-label="Scroll to top"
       >
-        <ArrowUp size={20} />
-      </button>
+        <ArrowUp className="w-5 h-5" />
+      </motion.button>
     </footer>
   );
 };
