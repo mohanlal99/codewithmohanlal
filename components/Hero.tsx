@@ -41,7 +41,7 @@ const Hero = () => {
   }, [displayText, isDeleting, currentRole]);
 
   const handleDownloadCV = () => {
-    window.open("https://drive.google.com/file/d/1LitTvfZ-M_fdiX6l2M-QAcsVh5xG5KWU/view", "_blank");
+    window.open("https://drive.google.com/file/d/1HAos-GAzVts2LvIpldHbJUAp_rhwqJaj/view?usp=sharing", "_blank");
   };
 
   const scrollToAbout = () => {
