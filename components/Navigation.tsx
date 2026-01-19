@@ -44,6 +44,18 @@ const Navigation = () => {
     setIsOpen(false);
   };
 
+const downloadAndOpen = () => {
+  window.open("https://drive.google.com/file/d/1HAos-GAzVts2LvIpldHbJUAp_rhwqJaj/view", "_blank");
+  
+  setTimeout(() => {
+    const link = document.createElement("a");
+    link.href = "https://drive.usercontent.google.com/uc?id=1HAos-GAzVts2LvIpldHbJUAp_rhwqJaj&export=download";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, 10);
+}
+
   return (
     <>
       <motion.header
@@ -126,12 +138,12 @@ const Navigation = () => {
 
               {/* CTA Button */}
               <motion.button
-                onClick={() => scrollToSection("#contact")}
+                onClick={() => downloadAndOpen()}
                 className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-violet-500/25 transition-shadow"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Let's Talk
+                Resume
               </motion.button>
             </div>
           </nav>

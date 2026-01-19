@@ -48,6 +48,18 @@ const Contact = () => {
     setIsSubmitting(false);
   };
 
+  const downloadAndOpen = () => {
+    window.open("https://drive.google.com/file/d/1HAos-GAzVts2LvIpldHbJUAp_rhwqJaj/view", "_blank");
+    
+    setTimeout(() => {
+      const link = document.createElement("a");
+      link.href = "https://drive.usercontent.google.com/uc?id=1HAos-GAzVts2LvIpldHbJUAp_rhwqJaj&export=download";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }, 100);
+  };
+
   const contactLinks = [
     {
       icon: Mail,
@@ -196,7 +208,7 @@ const Contact = () => {
 
             {/* Resume Download */}
             <motion.button
-              onClick={() => window.open("https://drive.google.com/file/d/1HAos-GAzVts2LvIpldHbJUAp_rhwqJaj/view?usp=sharing", "_blank")}
+              onClick={()=> downloadAndOpen()}
               className="w-full glass-card rounded-2xl p-6 flex items-center justify-center gap-3 text-violet-600 dark:text-violet-400 font-semibold hover:bg-violet-50 dark:hover:bg-violet-900/20 transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
